@@ -1,0 +1,174 @@
+import React from 'react';
+import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
+import { GraphSceneProps } from '@miraaj/timeline';
+import { modernCreatorV1 } from '@miraaj/style-system';
+
+interface Props {
+  props: GraphSceneProps;
+}
+
+export const Graph: React.FC<Props> = ({ props }) => {
+  const {
+    title = 'Performance Comparison',
+    labels = ['Manual', 'Basic AI', 'Miraaj V1'],
+    values = [20, 55, 95],
+    colorScheme = ['#EF4444', '#3B82F6', '#FFE600'],
+  } = props;
+
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const style = modernCreatorV1;
+
+  const maxVal = Math.max(...values, 100);
+
+  const cardSpring = spring({
+    frame,
+    fps,
+    config: { damping: 14, stiffness: 120 },
+  });
+
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#07090E',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 48,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          maxWidth: 960,
+          padding: '48px 44px',
+          borderRadius: 32,
+          backgroundColor: '#111625',
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 230, 0, 0.15)',
+          transform: `scale(${interpolate(cardSpring, [0, 1], [0.92, 1.0])})`,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {/* Graph Title */}
+        <div
+          style={{
+            fontFamily: style.typography.fontFamilyHeading,
+            fontSize: 48,
+            fontWeight: 900,
+            color: '#FFFFFF',
+            textTransform: 'uppercase',
+            letterSpacing: '-0.02em',
+            marginBottom: 48,
+            textAlign: 'center',
+          }}
+        >
+          {title}
+        </div>
+
+        {/* SVG Bar Chart */}
+        <div
+          style={{
+            width: '100%',
+            height: 380,
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-around',
+            borderBottom: '2px solid rgba(255, 255, 255, 0.2)',
+            paddingBottom: 0,
+            position: 'relative',
+          }}
+        >
+          {/* Horizontal gridlines */}
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, borderTop: '1px dashed rgba(255,255,255,0.1)' }} />
+          <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, borderTop: '1px dashed rgba(255,255,255,0.1)' }} />
+
+          {values.map((val, idx) => {
+            const barSpring = spring({
+              frame: Math.max(0, frame - 5 - idx * 4),
+              fps,
+              config: { damping: 12, stiffness: 100 },
+            });
+
+            const targetHeightPct = (val / maxVal) * 100;
+            const currentHeightPct = interpolate(barSpring, [0, 1], [0, targetHeightPct]);
+            const color = colorScheme[idx % colorScheme.length];
+
+            return (
+              <div
+                key={idx}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  width: 140,
+                  height: '100%',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                {/* Value Label */}
+                <div
+                  style={{
+                    fontFamily: style.typography.fontFamilyHeading,
+                    fontSize: 28,
+                    fontWeight: 900,
+                    color,
+                    marginBottom: 12,
+                    opacity: interpolate(barSpring, [0, 1], [0, 1]),
+                  }}
+                >
+                  {Math.round(val)}%
+                </div>
+
+                {/* Animated Bar */}
+                <div
+                  style={{
+                    width: '100%',
+                    height: `${currentHeightPct}%`,
+                    backgroundColor: color,
+                    borderRadius: '16px 16px 0 0',
+                    boxShadow: `0 0 25px ${color}66`,
+                    minHeight: 8,
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Labels below axes */}
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-around',
+            marginTop: 20,
+          }}
+        >
+          {labels.map((lbl, idx) => (
+            <div
+              key={idx}
+              style={{
+                width: 140,
+                textAlign: 'center',
+                fontFamily: style.typography.fontFamilyHeading,
+                fontSize: 22,
+                fontWeight: 700,
+                color: '#CBD5E1',
+              }}
+            >
+              {lbl}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

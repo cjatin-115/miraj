@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 120,
+  "styleId": "modern_creator_v1",
+  "scenes": [
+    {
+      "id": "scene_001_intro",
+      "type": "talking_head",
+      "startFrame": 0,
+      "durationInFrames": 30,
+      "videoSrc": "G:\\projects\\miraaj\\storage\\verification_run\\synthetic_webcam.mp4",
+      "sourceStartFrame": 0,
+      "sourceEndFrame": 30,
+      "crop": {
+        "mode": "cover",
+        "scale": 1.0
+      },
+      "transitionIn": {
+        "type": "cut",
+        "durationInFrames": 0
+      },
+      "captions": [
+        {
+          "text": "Welcome to Miraaj video engine",
+          "startFrame": 0,
+          "endFrame": 30,
+          "words": [
+            {
+              "word": "Welcome",
+              "startFrame": 0,
+              "endFrame": 8
+            },
+            {
+              "word": "to",
+              "startFrame": 8,
+              "endFrame": 12
+            },
+            {
+              "word": "Miraaj",
+              "startFrame": 12,
+              "endFrame": 20,
+              "isEmphasis": true
+            },
+            {
+              "word": "video",
+              "startFrame": 20,
+              "endFrame": 26
+            },
+            {
+              "word": "engine",
+              "startFrame": 26,
+              "endFrame": 30,
+              "isEmphasis": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene_002_punchin",
+      "type": "talking_head_zoom",
+      "startFrame": 30,
+      "durationInFrames": 30,
+      "videoSrc": "G:\\projects\\miraaj\\storage\\verification_run\\synthetic_webcam.mp4",
+      "sourceStartFrame": 30,
+      "sourceEndFrame": 60,
+      "crop": {
+        "mode": "close",
+        "scale": 1.25
+      },
+      "transitionIn": {
+        "type": "zoom",
+        "durationInFrames": 5
+      },
+      "captions": [
+        {
+          "text": "Dynamic punch in reframing",
+          "startFrame": 30,
+          "endFrame": 60,
+          "words": [
+            {
+              "word": "Dynamic",
+              "startFrame": 30,
+              "endFrame": 38,
+              "isEmphasis": true
+            },
+            {
+              "word": "punch-in",
+              "startFrame": 38,
+              "endFrame": 48,
+              "isEmphasis": true
+            },
+            {
+              "word": "reframing",
+              "startFrame": 48,
+              "endFrame": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene_003_statistic",
+      "type": "statistics",
+      "startFrame": 60,
+      "durationInFrames": 30,
+      "transitionIn": {
+        "type": "slide",
+        "durationInFrames": 5
+      },
+      "props": {
+        "statNumber": "73%",
+        "statLabel": "Faster Video Production",
+        "comparisonText": "vs manual Premiere editing",
+        "trend": "+4.2x",
+        "accentColor": "#FFE600"
+      },
+      "captions": [
+        {
+          "text": "Seventy-three percent faster workflow",
+          "startFrame": 60,
+          "endFrame": 90,
+          "words": [
+            {
+              "word": "Seventy-three",
+              "startFrame": 60,
+              "endFrame": 72,
+              "isEmphasis": true
+            },
+            {
+              "word": "percent",
+              "startFrame": 72,
+              "endFrame": 78
+            },
+            {
+              "word": "faster",
+              "startFrame": 78,
+              "endFrame": 90,
+              "isEmphasis": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene_004_code",
+      "type": "code",
+      "startFrame": 90,
+      "durationInFrames": 30,
+      "transitionIn": {
+        "type": "fade",
+        "durationInFrames": 5
+      },
+      "props": {
+        "title": "pipeline.py",
+        "language": "python",
+        "code": "edit_plan = director.plan(script)\ntimeline = compile(edit_plan)\nmp4 = render(timeline)",
+        "highlightLines": [
+          3
+        ]
+      },
+      "captions": [
+        {
+          "text": "Deterministic rendering pipeline",
+          "startFrame": 90,
+          "endFrame": 120,
+          "words": [
+            {
+              "word": "Deterministic",
+              "startFrame": 90,
+              "endFrame": 102,
+              "isEmphasis": true
+            },
+            {
+              "word": "rendering",
+              "startFrame": 102,
+              "endFrame": 110
+            },
+            {
+              "word": "pipeline",
+              "startFrame": 110,
+              "endFrame": 120,
+              "isEmphasis": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audioTracks": [
+    {
+      "id": "master_speech",
+      "src": "G:\\projects\\miraaj\\storage\\verification_run\\synthetic_webcam.mp4",
+      "startFrame": 0,
+      "durationInFrames": 120,
+      "volume": 1.0
+    }
+  ],
+  "overlays": []
+}

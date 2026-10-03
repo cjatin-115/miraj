@@ -1,0 +1,41 @@
+import { registerRoot } from 'remotion';
+import { Root } from './Root.js';
+
+export * from './Composition.js';
+export * from './Root.js';
+export * from './sampleTimeline.js';
+
+// Talking Head Components
+export * from './components/talking-head/FullscreenTalkingHead.js';
+export * from './components/talking-head/PunchInTalkingHead.js';
+export * from './components/talking-head/RoundedTalkingHead.js';
+export * from './components/talking-head/OverlayTalkingHead.js';
+export * from './components/talking-head/SplitTalkingHead.js';
+
+// Text Components
+export * from './components/text/WordCaption.js';
+export * from './components/text/KeywordCaption.js';
+export * from './components/text/BigStatement.js';
+export * from './components/text/EditorialText.js';
+export * from './components/text/CTA.js';
+
+// Visual Components
+export * from './components/visuals/StatCard.js';
+export * from './components/visuals/ComparisonCard.js';
+export * from './components/visuals/CodeBlock.js';
+export * from './components/visuals/BrowserWindow.js';
+export * from './components/visuals/Screenshot.js';
+export * from './components/visuals/ProductCard.js';
+export * from './components/visuals/Graph.js';
+export * from './components/visuals/Diagram.js';
+export * from './components/visuals/ImageScene.js';
+export * from './components/visuals/VideoScene.js';
+export * from './components/visuals/Quote.js';
+
+// Motion, Transitions, Overlays
+export * from './components/motion/MotionWrapper.js';
+export * from './components/transitions/TransitionManager.js';
+export * from './components/overlays/ProgressBar.js';
+export * from './components/overlays/CaptionsTrack.js';
+
+registerRoot(Root);
